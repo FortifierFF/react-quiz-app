@@ -1,35 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Settings from "./pages/Settings.jsx";
+import Questions from "./pages/Questions.jsx";
+import FinalScreen from "./pages/FinalScreen.jsx";
+import { Box, Container, Typography } from "@mui/material";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const router = createBrowserRouter([
+    { path: "/", element: <Settings /> },
+    { path: "/questions", element: <Questions /> },
+    { path: "/score", element: <FinalScreen /> },
+  ]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Container maxWidth="sm">
+      <Box textAlign="center" mt={5}>
+        <RouterProvider router={router} />
+      </Box>
+    </Container>
+  );
 }
 
-export default App
+export default App;
